@@ -2,42 +2,52 @@
 <div class="container">
 
     <br>
-    <b-menu-list label="관리자 메뉴">
-      <b-menu-item icon="account" :expanded="btn" @click="btn = !btn">
-          <template slot="label" slot-scope="props">
-            계정 관리
-            <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
-          </template>
-
-          <b-menu-item icon="account"        label="Users"></b-menu-item>
-          <b-menu-item icon="cellphone-link" label="Devices"></b-menu-item>
-          <b-menu-item icon="cash-multiple"  label="Payments"></b-menu-item>
-        </b-menu-item>
-    </b-menu-list>
-
-    <br>
     <b-menu>
-      <b-menu-list label="계정 관리">
-        <b-menu-item icon="account" :expanded="btn" @click="btn = !btn">
-          <template slot="label" slot-scope="props">
-            계정 관리
-            <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
-          </template>
 
-          <b-menu-item icon="account"        label="Users"></b-menu-item>
-          <b-menu-item icon="cellphone-link" label="Devices"></b-menu-item>
-          <b-menu-item icon="cash-multiple"  label="Payments"></b-menu-item>
-        </b-menu-item>
+      <!-- [1] 작업 관리 -->
+      <b-menu-list label="계정 메뉴">
+        <admin-menu    v-if="role=='admin'   " />
+        <importer-menu v-if="role=='importer'" />
+        <deliver-menu  v-if="role=='deliver'"  />
+        <cafe-menu     v-if="role=='cafe'"     />
+      </b-menu-list>
+      <br>
 
-        <b-menu-item icon="information-outline" label="Info"></b-menu-item>
+      <!-- [2] 계정 관리 -->
+      <b-menu-list label="계정 메뉴">
+        <b-menu-item icon="account-card-details" :expanded="btn" :active="btn" @click="btn = !btn">
+            <template slot="label" slot-scope="props">
+              계정 관리
+              <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
+            </template>
+
+            <b-menu-item icon="account" label="정보 조회"></b-menu-item>
+          </b-menu-item>
       </b-menu-list>
     </b-menu>
 </div>
 </template>
 
 <script>
+import adm      from './role-sub-menu/admin'
+import importer from './role-sub-menu/importer'
+import deliver  from './role-sub-menu/deliver'
+import cafe     from './role-sub-menu/cafe'
+
 export default {
-  components : {},
+  components : {
+    'admin-menu'   : adm,
+    'importer-menu': importer,
+    'deliver-menu' : deliver,
+    'cafe-menu'    : cafe,
+  },
+  props: {
+    role : {              // [1] 유저 role
+      type    : String,
+      default : 'admin',
+      // required: true,
+    }
+  },
   data () {
     return {
       btn : false,

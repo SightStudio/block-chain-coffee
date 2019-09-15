@@ -71,15 +71,16 @@
           <br>
 
           <b-dropdown aria-role="list">
-              <button class="button is-primary" slot="trigger">
-                  <span>역활</span>
-                  <!-- <b-icon icon="menu-down"></b-icon> -->
-                  <menu-down-icon/>
-              </button>
+            <button class="button is-primary" slot="trigger">
+                <span>역활</span>
+                <!-- <b-icon icon="menu-down"></b-icon> -->
+                <menu-down-icon/>
+            </button>
 
-              <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
-              <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
-              <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
+            <b-dropdown-item aria-role="listitem">  ROOT </b-dropdown-item>
+            <b-dropdown-item aria-role="listitem">수입업자</b-dropdown-item>
+            <b-dropdown-item aria-role="listitem">유통업자</b-dropdown-item>
+            <b-dropdown-item aria-role="listitem">카페사장</b-dropdown-item>
           </b-dropdown>
 
           <button type="button" class="submit">Sign Up</button>

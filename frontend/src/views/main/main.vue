@@ -2,18 +2,16 @@
   <div class="page">
     
     <!-- GNB -->
-    <main-gnb></main-gnb>
+    <gnb/>
     
     <!-- BODY -->
     <section class="columns">
 
       <!-- SIDE MENU -->
-      <main-menu class="column is-2"></main-menu>
+      <side-menu class="column is-2"></side-menu>
 
       <!-- MAIN BODY -->
-      <div class="column is-10">
-
-      </div>
+      <div class="column is-10"></div>
     </section>
 
     <!-- FOOTER -->
@@ -27,8 +25,8 @@ import menu     from '../../components/menu/side-menu';
 import footer   from '../../components/footer/footer'
 export default {
   components : { 
-    'main-gnb'   : gnb,
-    'main-menu'  : menu,
+    gnb,
+    'side-menu'  : menu,
     'main-footer': footer,
   },
   data () {
