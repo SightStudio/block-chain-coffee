@@ -1,13 +1,15 @@
 <template>
-  <b-menu-item icon="ferry" :expanded="btn" :active="btn" @click="btn = !btn">
+  <b-menu-item icon="warehouse" :expanded="btn" :active="btn" @click="btn = !btn">
     <template slot="label" slot-scope="props">
-      수입 업자
+      보관 관리
       <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
     </template>
 
-    <b-menu-item icon="cellphone-link" label="원두 등록" tag="router-link" to="/main/importer/register"></b-menu-item>
+    <b-menu-item icon="account"        label="이력 조회"></b-menu-item>
+    <b-menu-item icon="cellphone-link" label="이력 등록"></b-menu-item>
   </b-menu-item>
 </template>
+
 <script>
 export default {
   data () {

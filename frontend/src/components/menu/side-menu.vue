@@ -8,8 +8,10 @@
       <b-menu-list label="계정 메뉴">
         <admin-menu    v-if="role=='admin'   " />
         <importer-menu v-if="role=='importer'" />
-        <deliver-menu  v-if="role=='deliver'"  />
-        <cafe-menu     v-if="role=='cafe'"     />
+        <deliver-menu  v-if="role=='deliver' " />
+        <store-menu    v-if="role=='store'   " />
+        <cafe-menu     v-if="role=='cafe'    " />
+
       </b-menu-list>
       <br>
 
@@ -33,12 +35,13 @@ import adm      from './role-sub-menu/admin'
 import importer from './role-sub-menu/importer'
 import deliver  from './role-sub-menu/deliver'
 import cafe     from './role-sub-menu/cafe'
-
+import store    from './role-sub-menu/store'
 export default {
   components : {
     'admin-menu'   : adm,
     'importer-menu': importer,
     'deliver-menu' : deliver,
+    'store-menu'   : store,
     'cafe-menu'    : cafe,
   },
   props: {

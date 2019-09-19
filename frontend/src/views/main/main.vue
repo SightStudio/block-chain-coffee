@@ -2,16 +2,18 @@
   <div class="page">
     
     <!-- GNB -->
-    <gnb/>
+    <gnb id="gnb"/>
     
     <!-- BODY -->
-    <section class="columns">
+    <section id="body" class="columns" >
 
       <!-- SIDE MENU -->
-      <side-menu class="column is-2"></side-menu>
+      <side-menu class="side-menu column is-2"></side-menu>
 
       <!-- MAIN BODY -->
-      <div class="column is-10"></div>
+      <section class="column is-10">
+        <router-view/>
+      </section>
     </section>
 
     <!-- FOOTER -->
@@ -38,5 +40,5 @@ export default {
 </script>
 
 <style scoped>
-
+#body { margin : 0; }
 </style>

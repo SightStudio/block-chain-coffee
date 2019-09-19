@@ -5,9 +5,8 @@
       <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
     </template>
 
-    <b-menu-item icon="account"        label="Users"></b-menu-item>
-    <b-menu-item icon="cellphone-link" label="Devices"></b-menu-item>
-    <b-menu-item icon="cash-multiple"  label="Payments"></b-menu-item>
+    <b-menu-item icon="account"        label="이력관리"></b-menu-item>
+    <b-menu-item icon="cellphone-link" label="로스팅 등록"></b-menu-item>
   </b-menu-item>
 </template>
 

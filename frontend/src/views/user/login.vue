@@ -121,7 +121,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-input, button { border: none; outline: none; background: none;}
+.login{ text-align: center; }
+input, button { border: none; outline: none; background: none; }
 
 $contW: 900px;
 $imgW: 260px;

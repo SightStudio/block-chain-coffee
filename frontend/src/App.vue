@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-    <!-- 
-      <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-     -->
     <router-view/>
   </div>
 </template>
@@ -16,13 +10,13 @@ export default {
 }
 </script>
 <style lang="scss">
-@import url("https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css");
+@import url("https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css");
+@import url("https://use.fontawesome.com/193cc26c38.css");
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 #nav {
