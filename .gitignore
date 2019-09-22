@@ -1,26 +1,19 @@
 ###################################################
 #                   FRONT END
 ###################################################
-frontend/.DS_Store
-frontend/node_modules
-frontend/dist
+.DS_Store
+node_modules
+dist
 
 # local env files
-frontend/.env.local
-frontend/.env.*.local
+.env.local
+.env.*.local
 
 # Log files
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Editor directories and files
-frontend/.vscode
-
-
-###################################################
-#                   BACK END
-###################################################
-backend/node_modules
-backend/bin
-
+.vscode
+package-lock.json
