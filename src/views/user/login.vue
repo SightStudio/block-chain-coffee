@@ -25,21 +25,21 @@
         </div>
 
         <div class="level">
-          <a class="btn button btn-primary submit-btn is-size-6" @click="login(enumAuth.deliver)">
+          <a class="btn button btn-primary submit-btn is-size-6" @click="login(enumAuth.store)">
             창고관리 로그인
           </a>
           포트 번호 : 8081
         </div>
 
         <div class="level">
-          <a class="btn button btn-primary submit-btn is-size-6" @click="login(enumAuth.store)">
+          <a class="btn button btn-primary submit-btn is-size-6" @click="login(enumAuth.cafe)">
             카페관리 로그인
           </a>
           포트 번호 : 8082
         </div>
 
         <div class="level">
-          <a class="btn button btn-primary submit-btn is-size-6" @click="login(enumAuth.cafe)">
+          <a class="btn button btn-primary submit-btn is-size-6" @click="login(enumAuth.deliver)">
             정기배송 로그인
           </a>
 
@@ -64,7 +64,7 @@ export default {
     login (auth) {
       setRole(auth)
       this._alertLogin('로그인에 성공하였습니다.');
-      this.$router.push('/')
+      this.$router.push('/main')
     },
     _alertLogin (MSG) {
       this.$buefy.snackbar.open(MSG)

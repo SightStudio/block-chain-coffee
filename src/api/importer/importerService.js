@@ -1,6 +1,6 @@
 import axios   from 'axios'
 import { API } from '../../util/constant/constant';
-// const PATH = API.test;
+//const PATH = API.test;
 const PATH = API.importer;
 const service = {
     /**
@@ -18,6 +18,5 @@ const service = {
         return result;
     }
 }
-
 
 export default service;

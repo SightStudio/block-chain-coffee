@@ -11,7 +11,7 @@
             </b-field>
 
             <b-field label="날짜 등록">
-              <b-datepicker 
+              <b-datepicker
                 placeholder="등록할 날자를 정해주세요" 
                 :month-names="calendar.month" 
                 :day-names="calendar.day"
@@ -29,20 +29,22 @@
                 </option>
               </b-select>
             </b-field>
+
+            <label class="has-text-weight-bold">산지</label>
+            <b-field>
+              <b-select 
+                placeholder="산지 선택"
+                v-model="form.value13">
+                <option v-for="option in from" 
+                        :value="option.value" 
+                        :key="option.name">
+                  {{ option.name }}
+                </option>
+              </b-select>
+            </b-field>
           </div>
 
           <div class="column is-5 is-offset-2">
-            <br>
-            <label class="has-text-weight-bold">산지</label>
-            <b-select 
-              placeholder="산지 선택"
-              v-model="form.value13">
-              <option v-for="option in from" 
-                      :value="option.value" 
-                      :key="option.name">
-                {{ option.name }}
-              </option>
-            </b-select>
             <br>
 
             <b-field label="수확일">
@@ -56,14 +58,24 @@
             </b-field>
 
             <b-field label="수량">
-              <b-slider v-model="form.value15" :min="1" :max="10" ticks></b-slider>
+              <b-numberinput :editable="false" v-model="form.value15" :min="1" :max="10" ticks></b-numberinput>
             </b-field>
+
+            <br>
+            <b-field label="고도">
+              <b-slider :min="0" :max="3" aria-label="고도" :tooltip="false" v-model="form.latitude">
+                <b-slider-tick :value="0">1500~2000</b-slider-tick>
+                <b-slider-tick :value="1">2000~2500</b-slider-tick>
+                <b-slider-tick :value="2">2500~3000</b-slider-tick>
+                <b-slider-tick :value="3">3000~3500</b-slider-tick>
+              </b-slider>
+            </b-field>
+            <br>
 
             <label class="has-text-weight-bold">생두 등급</label>
             <b-select 
               placeholder="등급 선택"
               v-model="form.value16">
-              
               <option v-for="option in bean" 
                       :value="option.value" 
                       :key="option.name">
@@ -82,6 +94,7 @@
   </section>
 </template>
 <script>
+import moment from "moment";
 import { calendar, coffeeMeta } from '../../../util/constant/constant'
 import ImporterService          from '../../../api/importer/importerService'
 export default {
@@ -93,13 +106,14 @@ export default {
       kind     : coffeeMeta.kinds,
 
       form : {
-        key     : '',
-        value11 : new Date(),
-        value12 : '',
-        value13 : '',
-        value14 : new Date(),
-        value15 : 0,
-        value16 : '',
+        key      : '',
+        value11  : new Date(),
+        value12  : '',
+        value13  : '',
+        value14  : new Date(),
+        value15  : 0,
+        value16  : '',
+        latitude : 0
       }
     }
   },
@@ -110,8 +124,10 @@ export default {
     registerForm() {
       let result = ImporterService.registerGood(this.form);
 
-      if(result)
+      if(result != true) {
         this.$buefy.snackbar.open('정상적으로 등록되었습니다.')
+        this.$router.push('/main/common/show-list')
+      }
     }
   }
 }
