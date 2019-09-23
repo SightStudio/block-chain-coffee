@@ -16,19 +16,19 @@
       
       <!-- [2] 공통 메뉴 -->
       <b-menu-list label="공통 메뉴">
-        <b-menu-item icon="cellphone-link" label="이력 조회" tag="router-link" to="/importer/show-list"></b-menu-item>
+        <b-menu-item icon="cellphone-link" label="이력 조회" tag="router-link" to="/main/common/show-list"></b-menu-item>
       </b-menu-list>
 
       <!-- [3] 계정 관리 -->
       <b-menu-list label="계정 메뉴">
         <b-menu-item icon="account-card-details" :expanded="btn" :active="btn" @click="btn = !btn">
-            <template slot="label" slot-scope="props">
-              계정 관리
-              <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
-            </template>
+          <template slot="label" slot-scope="props">
+            계정 관리
+            <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
+          </template>
 
-            <b-menu-item icon="account" label="정보 조회"></b-menu-item>
-          </b-menu-item>
+          <b-menu-item icon="account" label="정보 조회"></b-menu-item>
+        </b-menu-item>
       </b-menu-list>
     </b-menu>
 </div>

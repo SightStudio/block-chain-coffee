@@ -6,8 +6,8 @@
     </template>
 
     <!-- <b-menu-item icon="account"        label="도착 날짜 조회" tag="router-link" to="/store/register-history"></b-menu-item> -->
-    <b-menu-item icon="cellphone-link" label="보관 이력 등록" tag="router-link" to="/store/register-history"></b-menu-item>
-    <b-menu-item icon="cellphone-link" label="상품 출고 등록" tag="router-link" to="/store/release-goods"></b-menu-item>
+    <b-menu-item icon="cellphone-link" label="보관 이력 등록" tag="router-link" to="/main/store/register-history"></b-menu-item>
+    <b-menu-item icon="cellphone-link" label="상품 출고 등록" tag="router-link" to="/main/store/release-goods"></b-menu-item>
   </b-menu-item>
 </template>
 

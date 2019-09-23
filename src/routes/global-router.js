@@ -13,12 +13,12 @@ export default new Router({
   mode  : 'history',
   routes: [
     {
-      path: '/intro',
+      path: '/',
       name: 'introView',
       component: introView
     },
     {
-      path: '/',
+      path: '/main',
       name: 'MenuView',
       component: MenuView,
       children : MenuInternalRouter
