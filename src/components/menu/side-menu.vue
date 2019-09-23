@@ -40,7 +40,6 @@ import importer    from './role-sub-menu/importer-menu'
 import deliver     from './role-sub-menu/deliver-menu'
 import cafe        from './role-sub-menu/cafe-menu'
 import store       from './role-sub-menu/store-menu'
-import { roleNow } from '../../util/constant/constant'
 
 export default {
   components : {
@@ -52,7 +51,7 @@ export default {
   },
   data () {
     return {
-      role : roleNow,
+      role : this.$store.state.userRole,
       btn  : false,
     }
   },

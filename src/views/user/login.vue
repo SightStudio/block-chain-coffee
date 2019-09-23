@@ -52,8 +52,7 @@
 </template>
 
 <script>
-import { AUTH }              from '../../util/enum/enum'
-import { roleNow, setRole }  from '../../util/constant/constant'
+import { AUTH }  from '../../util/enum/enum'
 export default {
   data () {
     return {
@@ -62,9 +61,16 @@ export default {
   },
   methods: {
     login (auth) {
-      setRole(auth)
-      this._alertLogin('로그인에 성공하였습니다.');
-      this.$router.push('/main')
+      
+      // [1] 로그인 actions 실행
+      this.$store.dispatch('LOGIN', auth)
+                 .then( () => {
+                    this._alertLogin('로그인에 성공하였습니다.');
+                    this.$router.push('/main')
+                 })
+                 .catch( () => {
+                    this._alertLogin('로그인에 실패하였습니다.');
+                 })
     },
     _alertLogin (MSG) {
       this.$buefy.snackbar.open(MSG)

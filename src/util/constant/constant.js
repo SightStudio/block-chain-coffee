@@ -1,9 +1,9 @@
 export const API = {
     test    : 'https://jsonplaceholder.typicode.com',
-    importer: 'importer-api',  // 'localhost:8080',
-    store   : 'store-api'   ,  // 'localhost:8081',
-    cafe    : 'cafe-api'    ,  // 'localhost:8082',
-    deliver : 'deliver-api' ,  // 'localhost:8083',
+    importer: '/importer-api',  // 'localhost:8080',
+    store   : '/store-api'   ,  // 'localhost:8081',
+    cafe    : '/cafe-api'    ,  // 'localhost:8082',
+    deliver : '/deliver-api' ,  // 'localhost:8083',
 }
 
 /**
@@ -45,7 +45,7 @@ export const coffeeMeta = {
     
     origin : [
         { name: '에티오피아', value: '에티오피아'},
-        { name: '케냐',       value: '2'},
+        { name: '케냐',       value: '케냐'},
         { name: '파나마',     value: '파나마'},
         { name: '과테말라',   value: '과테말라'},
         { name: '콜롬비아',   value: '콜롬비아'},

@@ -84,7 +84,9 @@
 </template>
 
 <script>
+import CommonService from '../../../api/common/commonService'
 export default {
+
     data() {
         const data = [
             { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016/10/15 13:43:27', 'gender': 'Male' },
@@ -108,7 +110,7 @@ export default {
     },
 
     mounted() {
-        
+        CommonService.getHistory();
     }
 }
 </script>
