@@ -5,8 +5,8 @@
   <div class="columns">
     <form class="column is-9  is-offset-1">
       <div class="level">
-        <div>
-          <b-field label="원두 명">
+        <div class="column is-8">
+          <b-field label="원두 ID">
             <b-input v-model="form.key"></b-input>
           </b-field>
 
@@ -15,61 +15,36 @@
                   placeholder="등록할 날자를 정해주세요"
                   :month-names="calendar.month"
                   :day-names="calendar.day"
-                  v-model="form.value11">
+                  v-model="form.value17">
                   icon="calendar-today">
               </b-datepicker>
           </b-field>
 
           <b-field label="배송지 주소">
-            <b-input v-model="form.dest"></b-input>
+            <b-input v-model="form.destination"></b-input>
           </b-field>
         </div>
       </div> <!-- level end -->
       <div class="has-text-right">
         <b-button type="is-info" @click="resetForm">초기화</b-button>
-        <b-button type="is-link">작성</b-button>
+        <b-button type="is-link" @click="registerForm">작성</b-button>
       </div>
     </form>
   </div>
 </article>
 </template>
 <script>
+import { calendar } from '../../../util/constant/constant'
+import ImporterService          from '../../../api/importer/importerService'
+
 export default {
   data () {
     return {
-      bean : [
-        { name : 'AA', val : '1',},
-        { name : 'A', val : '2',},
-        { name : 'AMEX', val : '3',},
-        { name : 'B', val : '4',},
-        { name : 'C', val : '4',},
-      ],
-      from : [
-        { name : '에티오피아', val : '1',},
-        { name : '케냐', val : '2',},
-        { name : '파나마', val : '3',},
-        { name : '과테말라', val : '4',},
-        { name : '콜롬비아', val : '4',},
-        { name : '브라질', val : '4'},
-        { name : '인도네시아', val : '4'},
-      ],
-      kind : [
-        { name : '아라비카', val : '1',},
-        { name : '로부스타', val : '2',},
-        { name : '리베리카', val : '3',},
-      ],
-      calendar : {
-        month : ['1월', '2월', '3월', "4월", "5월",'6월', '7월', '8월', "9월", "10월", "11월","12월"] ,
-        day   : ['일', '월', '화', '수', '목', '금', '토']
-      },
+      calendar : calendar.kor,
       form : {
-        name   : '',
-        info_1 : '',
-        info_2 : '',
-        info_3 : '',
-        count  : 0,
-        tagArr : [],
-        dest   : '인천 중구 인중로 305 북성동 1가 4-1'
+        key          : '',
+        value17      : new Date(),
+        destination : '인천 중구 인중로 305 북성동 1가 4-1'
       }
     }
   },
@@ -77,10 +52,20 @@ export default {
     resetForm() {
       for ( let key in this.form ) { this.form[key] = '' }
     },
+    registerForm() {
+      const DTO = {
+        key           : this.form.key, 
+        value17       : moment(this.form.value17).format("YYYY/MM/DD").toString(),
+        desttination  : this.form.desttination,
+      }
 
-    addTag(selectBoxName) {
-      this.form.tagArr.push(selectBoxName)
-    }
+      let result = ImporterService.registerGood(DTO);
+
+      if(result) {
+        this.$buefy.snackbar.open('정상적으로 등록되었습니다.')
+        this.$router.push('/main/common/show-list')
+      }
+    } // end registerForm()
   }
 }
 </script>

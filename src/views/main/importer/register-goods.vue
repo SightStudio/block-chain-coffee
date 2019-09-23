@@ -62,8 +62,8 @@
             </b-field>
 
             <br>
-            <b-field label="고도">
-              <b-slider :min="0" :max="3" aria-label="고도" :tooltip="false" v-model="form.latitude">
+            <b-field label="재배 고도">
+              <b-slider :min="0" :max="3" aria-label="고도" :tooltip="false" v-model="form.latitute">
                 <b-slider-tick :value="0">1500~2000</b-slider-tick>
                 <b-slider-tick :value="1">2000~2500</b-slider-tick>
                 <b-slider-tick :value="2">2500~3000</b-slider-tick>
@@ -113,7 +113,7 @@ export default {
         value14  : new Date(),
         value15  : 0,
         value16  : '',
-        latitude : 0
+        latitute : 0
       }
     }
   },
@@ -122,9 +122,20 @@ export default {
       for ( let key in this.form ) { this.form[key] = '' }
     },
     registerForm() {
-      let result = ImporterService.registerGood(this.form);
+      const DTO = {
+        key      : this.form.key, 
+        value11  : moment(this.form.value11).format("YYYY/MM/DD").toString(),
+        value12  : this.form.value12,
+        value13  : this.form.value13,
+        value14  : moment(this.form.value14).format("YYYY/MM/DD").toString(),
+        value15  : this.form.value15,
+        value16  : this.form.value16,
+        latitute : this.form.latitute
+      }
 
-      if(result != true) {
+      let result = ImporterService.registerGood(DTO);
+
+      if(result) {
         this.$buefy.snackbar.open('정상적으로 등록되었습니다.')
         this.$router.push('/main/common/show-list')
       }

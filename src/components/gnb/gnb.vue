@@ -39,8 +39,13 @@ export default {
   },
   methods: {
     logout() {
-      this.$buefy.snackbar.open('성공적으로 로그아웃하였습니다.');
-      this.$router.push('/');
+
+      // [1] 로그아웃 actions 실행
+      this.$store.dispatch('LOGOUT')
+                 .then( () => {
+                    this.$buefy.snackbar.open('성공적으로 로그아웃하였습니다.');
+                    this.$router.push('/');
+                })
     }
   }
 }
