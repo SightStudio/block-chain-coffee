@@ -1,7 +1,13 @@
 <template>
     <section class="show-list">
         <div class="level">
-            <h3 class="title">이력 조회</h3>
+            <h3 class="title">
+                이력 조회
+                <b-button size="is-medium"
+                    icon-right="refresh" @click="refresh">
+                    새로고침
+                </b-button>
+            </h3>
             <span class="has-text-danger has-text-weight-bold is-size-6"> * 패키징 되지 않은 원두는 QR코드가 제공되지 않습니다.</span>
         </div>
 
@@ -88,6 +94,7 @@
     </section>
 </template>
 <script>
+import axios   from 'axios'
 import modal         from './info-modal'
 import QRcodeModal   from './qrcode-modal'
 import CommonService from '../../../api/common/commonService'
@@ -97,13 +104,18 @@ export default {
         'info-modal'    : modal,
         'qr-code-modal' : QRcodeModal
     },
-    mounted() {
-        this.data = CommonService.getHistory();
-        this.meregRow()
+    async mounted() {
+        this.data = await CommonService.getHistory();
+        await this.meregRow()
     },
     data() {
         return {
-            data  : [],
+            // data  : [
+            //         {"key":"1112","v11":"2019/09/01","v12":"로부스타","v13":"에티오피아","v14":"2019/08/01","v15":"60","v16":"AA","v17":"2500~3000","v18":"인천 중구 인중로 305 북성동 1가 4-1","v19":"2019/09/06","v20":"2019/09/07","v21":"19°C","v22":"66∅","v23":"2019/09/08","v24":"카페 블리스","v25":"2019/09/09 ","v26":"2019/09/09","v27":"라이트","v28":"2","v29":"3","v30":"2","v31":"1","v32":"2","v33":"4","v34":"4","v35":"4","v36":"2019/09/11","v37":"블록커피","v38":"2019/09/12","v39":"2019/09/12","v40":"2019/09/12"},
+            //         {"key":"1113","v11":"2019/08/01","v12":"리베리카","v13":"케냐","v14":"2019/08/02","v15":"60","v16":"AA","v17":"2500~3000","v18":"인천 중구 인중로 305 북성동 1가 4-1","v19":"2019/08/06","v20":"2019/08/07","v21":"19°C","v22":"66∅","v23":"2019/08/08","v24":"런던다방","v25":"2019/08/09 ","v26":"2019/08/09","v27":"시나몬","v28":"1","v29":"3","v30":"2","v31":"5","v32":"2","v33":"4","v34":"2","v35":"2","v36":"2019/08/11","v37":"블록커피","v38":"2019/08/12","v39":"2019/08/12","v40":"2019/08/12"},
+            //         {"key":"121416","v11":"2019/07/01","v12":"아라비카","v13":"브라질","v14":"2019/07/01","v15":"60","v16":"AA","v17":"2500~3000","v18":"인천 중구 인중로 305 북성동 1가 4-1","v19":"2019/07/06","v20":"2019/07/07","v21":"19°C","v22":"66∅","v23":"2019/07/08","v24":"커피프린스 1호점","v25":"2019/07/09 ","v26":"2019/07/09","v27":"라이트","v28":"2","v29":"3","v30":"2","v31":"5","v32":"2","v33":"1","v34":"1","v35":"4","v36":"2019/07/11","v37":"블록커피","v38":"2019/07/12","v39":"2019/07/12","v40":"2019/07/12"}
+            // ],
+            data : [],
             modalData : {},
             qrcodeData : [],
             dataModalBtn: false,
@@ -125,7 +137,7 @@ export default {
         },
         openQRCodeinJquery(event ,index) {
 
-            // [1] row에 걸린 이벤트 제거
+             // [1] row에 걸린 이벤트 제거
             event.stopPropagation();
             
             const start = parseInt(this.data.length/4)+1
@@ -138,20 +150,21 @@ export default {
         },
         meregRow() {
             // 엑셀 row 병합 함수 
-                $('.qr-code').each(function() {
-                    //console.log($(this).data('row-idx-by-4'))
-                    //console.log($(this).data('row-idx-by-4'))
-                    var rows = $(".qr-code[row-idx='" + $(this).attr('row-idx') + "']");
-//                    console.log(rows)
-                    console.log(rows.length)
-                    if (rows.length > 1) {
-                        rows.eq(0).attr("rowspan", rows.length);
-                        rows.not(":eq(0)").remove();
-                    }
-                })
-            }
+            $('.qr-code').each(function() {
+                var rows = $(".qr-code[row-idx='" + $(this).attr('row-idx') + "']");
+                if (rows.length > 1) {
+                    rows.eq(0).attr("rowspan", rows.length);
+                    rows.not(":eq(0)").remove();
+                }
+            })
+        },
+
+        async refresh() {
+            this.data = await CommonService.getHistory();
+            await this.meregRow()
         }
     }
+}
 </script>
 <style scoped>
 table tr {

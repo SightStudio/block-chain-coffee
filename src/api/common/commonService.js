@@ -11,8 +11,9 @@ const service = {
      * @since  2019.09.22
      */
     getHistory : () => {
-        return axios.get(`${PATH}/query`)
+        return axios.get(`/importer-api/query`)
                     .then( res => {
+		               console.log(res)
                        return res.status == 200 ? res.data : [];
                     })
         //return result;

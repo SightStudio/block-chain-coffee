@@ -23,6 +23,7 @@
           <b-field label="배송지 주소">
           <b-select placeholder="카페 선택">
                 <option
+		    v-model="form.destination2"
                     v-for="option in cafe"
                     :value="option.value"
                     :key="option.name">

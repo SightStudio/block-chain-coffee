@@ -127,7 +127,7 @@
 
                                     <tr>
                                         <td>창고 관리 업체 배송지</td>
-                                        <td>{{rowData.v24}}</td>
+                                        <td>{{rowData.destination2}}</td>
                                     </tr>
 
                                     <tr>

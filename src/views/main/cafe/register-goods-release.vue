@@ -44,7 +44,7 @@ export default {
       form : {
         key          : '',
         value38      : new Date(),
-        destination3 : '인천 중구 인중로 305 북성동 1가 4-1'
+        destination3 : '블록커피'
       }
     }
   },
@@ -57,7 +57,7 @@ export default {
       const DTO = {
         key          : this.form.key, 
         value38      : this.form.value38,
-        destination3 : this.destination3
+        destination3 : this.form.destination3
       }
 
       let result = CafeService.registerGoodsRelease(DTO);

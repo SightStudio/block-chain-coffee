@@ -21,7 +21,7 @@
           </b-field>
 
           <b-field label="배송지 주소">
-            <b-input v-model="form.destination"></b-input>
+            <b-input v-model="form.destination1"></b-input>
           </b-field>
         </div>
       </div> <!-- level end -->
@@ -44,7 +44,7 @@ export default {
       form : {
         key          : '',
         value17      : new Date(),
-        destination : '인천 중구 인중로 305 북성동 1가 4-1'
+        destination1 : '인천 중구 인중로 305 북성동 1가 4-1'
       }
     }
   },
@@ -56,7 +56,7 @@ export default {
       const DTO = {
         key           : this.form.key, 
         value17       : this.form.value17,
-        desttination  : this.form.desttination,
+        destination1  : this.form.destination1,
       }
 
       let result = ImporterService.releaseGood(DTO);
