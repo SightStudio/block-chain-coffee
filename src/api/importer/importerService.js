@@ -12,7 +12,7 @@ const service = {
     registerGood : (data) => {
         return axios.post(`${PATH}/createkey`, data)
                     .then( res => {
-                    return res.status == 200 ? true : false;
+                        return res.status == 200 ? true : false;
                     })
     },
 

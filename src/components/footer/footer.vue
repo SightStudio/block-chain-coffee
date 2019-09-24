@@ -1,6 +1,6 @@
 <template>
   <footer class="flex-rw">
-    <ul class="footer-list-top">
+    <!-- <ul class="footer-list-top">
       <li>
         <h4 class="footer-list-header">About Pavilion</h4>
       </li>
@@ -73,7 +73,7 @@
         <a href="/terms-of-use.html" class="generic-anchor" rel="nofollow">Terms</a> | <a href="/privacy-policy.html"
           class="generic-anchor" rel="nofollow">Privacy</a>
       </div>
-    </section>
+    </section> -->
   </footer>
 </template>
 
