@@ -1,11 +1,11 @@
 <template>
-<article class="register-goods">
-  <h3 class="title">상품 출고</h3>
+<article class="register-goods-release">
+  <h3 class="title">상품 출고 날짜 등록</h3>
 
   <div class="columns">
-    <form class="column is-9  is-offset-1">
+    <form class="column is-9">
       <div class="level">
-        <div class="column is-8">
+        <div class="column is-5" >
           <b-field label="원두 ID">
             <b-input v-model="form.key"></b-input>
           </b-field>
@@ -15,13 +15,9 @@
                   placeholder="등록할 날자를 정해주세요"
                   :month-names="calendar.month"
                   :day-names="calendar.day"
-                  v-model="form.value17">
+                  v-model="form.value44"
                   icon="calendar-today">
               </b-datepicker>
-          </b-field>
-
-          <b-field label="배송지 주소">
-            <b-input v-model="form.destination"></b-input>
           </b-field>
         </div>
       </div> <!-- level end -->
@@ -34,17 +30,15 @@
 </article>
 </template>
 <script>
-import { calendar } from '../../../util/constant/constant'
-import ImporterService          from '../../../api/importer/importerService'
-
+import { calendar, coffeeMeta } from '../../../util/constant/constant'
+import DeliverService           from '../../../api/deliver/deliverService'
 export default {
   data () {
     return {
       calendar : calendar.kor,
       form : {
-        key          : '',
-        value17      : new Date(),
-        destination : '인천 중구 인중로 305 북성동 1가 4-1'
+        key     : '',
+        value44 : new Date(),
       }
     }
   },
@@ -54,12 +48,11 @@ export default {
     },
     registerForm() {
       const DTO = {
-        key           : this.form.key, 
-        value17       : moment(this.form.value17).format("YYYY/MM/DD").toString(),
-        desttination  : this.form.desttination,
+        key        : this.form.key, 
+        value44    : this.form.value44,
       }
 
-      let result = ImporterService.registerGood(DTO);
+      let result = DeliverService.registerGoodsRelease(DTO);
 
       if(result) {
         this.$buefy.snackbar.open('정상적으로 등록되었습니다.')

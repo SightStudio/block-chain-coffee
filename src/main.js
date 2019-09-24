@@ -9,6 +9,9 @@ import moment from "moment";
 import 'buefy/dist/buefy.css'
 import 'vue-material-design-icons/styles.css'
 
+import VueApexCharts from 'vue-apexcharts'
+
+// [1] buefy date formatter 변경
 Vue.use(Buefy, {
   defaultDateFormatter: date => {
     return moment(date).format("YYYY/MM/DD");
@@ -17,6 +20,12 @@ Vue.use(Buefy, {
     return moment(date, "YYYY/MM/DD").toDate();
   }
 })
+
+// [2] apex char library
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
+
+
 Vue.config.productionTip = false
 
 new Vue({
