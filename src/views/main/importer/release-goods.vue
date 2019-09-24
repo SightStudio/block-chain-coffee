@@ -59,7 +59,7 @@ export default {
         desttination  : this.form.desttination,
       }
 
-      let result = ImporterService.registerGood(DTO);
+      let result = ImporterService.releaseGood(DTO);
 
       if(result) {
         this.$buefy.snackbar.open('정상적으로 등록되었습니다.')

@@ -11,11 +11,10 @@ const service = {
      * @since  2019.09.22
      */
     getHistory : () => {
-        axios.get(`${PATH}/querykey`)
-             .then( res => {
-                 //result = res.status == 200 ? true : false;
-                 console.log(res)
-             })
+        return axios.get(`${PATH}/query`)
+                    .then( res => {
+                       return res.status == 200 ? res.data : [];
+                    })
         //return result;
     }
 }

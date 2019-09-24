@@ -10,12 +10,10 @@ const service = {
      * @since  2019.09.22
      */
     registerStoreHistory : (data) => {
-        let result = false;        
-        axios.post(`${PATH}/createkey`, data)
-             .then( res => {
-                 result = res.status == 200 ? true : false;
-             })
-        return result;
+        return axios.post(`${PATH}/createkey`, data)
+                    .then( res => {
+                        return res.status == 200 ? true : false;
+                    })
     },
 
     /**
@@ -25,12 +23,10 @@ const service = {
      * @since  2019.09.22
      */
     releaseGoods : (data) => {
-        let result = false;        
-        axios.post(`${PATH}/createkey2`, data)
-             .then( res => {
-                 result = res.status == 200 ? true : false;
-             })
-        return result;
+        return axios.post(`${PATH}/createkey2`, data)
+                    .then( res => {
+                        return res.status == 200 ? true : false;
+                    })
     }
 }
 
