@@ -61,7 +61,7 @@ export default {
     registerForm() {
       const DTO = {
         key      : this.form.key, 
-        value19  : moment(this.form.value11).format("YYYY/MM/DD").toString(),
+        value19  : this.form.value19,
         value20  : this.form.value20,
         value21  : this.form.value21,
       }

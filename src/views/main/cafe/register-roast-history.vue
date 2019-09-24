@@ -12,7 +12,7 @@
 
           <br>
           <label>로스팅 방법</label>
-          <b-select placeholder="단계 선택">
+          <b-select placeholder="단계 선택" v-model="form.value29">
                 <option
                     v-for="option in way"
                     :value="option.value"
@@ -68,9 +68,6 @@
         </div> <!-- level-left end -->
 
         <div class="column is-6">
-          <b-field label="로스팅 온도 (임시 제외)">
-              <b-slider :min="160" :max="240" ticks></b-slider>
-          </b-field>
 
           <b-field label="로스팅 시간">
             <b-slider v-model="form.value28" :min="15" :max="20" ticks></b-slider>
@@ -118,6 +115,7 @@ export default {
       form : {
         key     : '',
         value28 : 0,
+        value29 : 0,
         flavor : {
           fragrance : 0,
           balance   : 0,
@@ -140,6 +138,7 @@ export default {
       const DTO = {
         key        : this.form.key, 
         value28    : this.form.value28,
+        value29    : this.form.value29,
         fragrance  : this.form.flavor.fragrance ,
         balance    : this.form.flavor.balance   ,
         bitterness : this.form.flavor.bitterness,

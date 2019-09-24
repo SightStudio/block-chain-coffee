@@ -3,7 +3,7 @@
 
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png">
+          <img src="https://storage-baram.s3.ap-northeast-2.amazonaws.com/logo.png">
         </b-navbar-item>
       </template>
 
@@ -52,5 +52,9 @@ export default {
 </script>
 
 <style scoped>
-
+.navbar-item img {
+  max-height: 4.75rem;
+  padding-left: 2rem;
+  padding-top: 1rem;
+}
 </style>

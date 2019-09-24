@@ -122,15 +122,31 @@ export default {
       for ( let key in this.form ) { this.form[key] = '' }
     },
     registerForm() {
+      let lat = '';
+      switch(this.form.latitute) {
+        case 0: 
+          lat = '1500 ~ 2000';
+          break;
+        case 1: 
+          lat = '2000 ~ 2500';
+          break;
+        case 2: 
+          lat = '2500 ~ 3000';
+          break;
+        case 3: 
+          lat = '3000 ~ 3500';
+          break;
+      }
+
       const DTO = {
         key      : this.form.key, 
-        value11  : moment(this.form.value11).format("YYYY/MM/DD").toString(),
+        value11  : this.form.value11,
         value12  : this.form.value12,
         value13  : this.form.value13,
-        value14  : moment(this.form.value14).format("YYYY/MM/DD").toString(),
+        value14  : this.form.value14,
         value15  : this.form.value15,
         value16  : this.form.value16,
-        latitute : this.form.latitute
+        latitute : lat
       }
 
       let result = ImporterService.registerGood(DTO);
