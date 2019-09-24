@@ -11,7 +11,7 @@
       <side-menu class="column is-3"></side-menu>
 
       <!-- MAIN BODY -->
-      <section class="column is-9">
+      <section class="column is-9" id="main-body">
         <router-view/>
       </section>
     </section>
@@ -38,4 +38,5 @@ export default {
 
 <style scoped>
 #body { margin : 0; }
+#main-body {min-height: 400px;}
 </style>

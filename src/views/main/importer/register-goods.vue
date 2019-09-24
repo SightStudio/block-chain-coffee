@@ -5,7 +5,7 @@
     <article class="columns">
       <form class="column is-9">
         <div class="level">
-          <div class="column is-6">
+          <div class="jobs is-6">
             <b-field label="원두 ID">
               <b-input v-model="form.key"></b-input>
             </b-field>
@@ -138,8 +138,10 @@ export default {
       if(result) {
         this.$buefy.snackbar.open('정상적으로 등록되었습니다.')
         this.$router.push('/main/common/show-list')
+      } else {
+        this.$buefy.snackbar.open({ message : '등록에 실패하였습니다.', type : 'is-danger'})
       }
-    }
+    } // end registerForm()
   }
 }
 </script>

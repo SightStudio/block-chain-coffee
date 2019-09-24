@@ -58,4 +58,33 @@ export const coffeeMeta = {
         { name: '로부스타', value: '로부스타'},
         { name: '리베리카', value: '리베리카'},
     ],
+
+    cafe : [
+        { name : '커피인더스트리 1호점', val : '커피인더스트리 1호점'},
+        { name : '커피 프린스 1호점'   , val : '커피 프린스 1호점'},
+        { name : '런던 다방'          , val : '런던 다방'},
+        { name : '카페블리스'         , val : '카페블리스'},
+    ],
+
+    roastingWay : [
+        { name : '라이트',   val : '라이트'  },
+        { name : '시나몬',   val : '시나몬'  },
+        { name : '미디엄',   val : '미디엄'  },
+        { name : '하이'  ,   val : '하이'    },
+        { name : '시티'  ,   val : '시티'    },
+        { name : '풀시티' ,  val : '풀시티'  }, 
+        { name : '프렌치' ,  val : '프렌치4' },
+        { name : '이탈리아', val : '이탈리아' },
+    ],
+ 
+    flavor : [
+        { name : 'fragrance(향)'   , desc : 'fragrance' },
+        { name : 'balance(비율)'   , desc : 'balance'   },
+        { name : 'bitterness(신랄)', desc : 'bitterness'},
+        { name : 'sweetess(달콤)'  , desc : 'sweetess'  },
+        { name : 'aftertaste(뒷맛)', desc : 'aftertaste'},
+        { name : 'body(무게감)'    , desc : 'body'      },
+        { name : 'acidity(신맛)'   , desc : 'acidity'   },
+        { name : 'aroma(아로마) '  , desc : 'aroma'     },
+    ]
 }

@@ -80,13 +80,27 @@
                 </section>
             </template>
         </b-table>
+
+        <button class="button is-primary is-medium"
+            @click="isComponentModalActive = true">
+            Launch component modal
+        </button>
+
+        <b-modal :active.sync="isComponentModalActive" has-modal-card>
+            <info-modal></info-modal>
+        </b-modal>
+
     </section>
 </template>
 
 <script>
+import modal         from './info-modal'
 import CommonService from '../../../api/common/commonService'
 export default {
-
+    components : { 'info-modal' : modal },
+    mounted() {
+        CommonService.getHistory();
+    },
     data() {
         const data = [
             { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016/10/15 13:43:27', 'gender': 'Male' },
@@ -95,7 +109,6 @@ export default {
             { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016/04/10 10:28:46', 'gender': 'Male' },
             { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016/12/06 14:38:38', 'gender': 'Female' }
         ]
-        
         return {
             data,
             isEmpty: false,
@@ -105,12 +118,14 @@ export default {
             isHoverable: false,
             isFocusable: false,
             isLoading: false,
-            hasMobileCards: true
-        }
-    },
+            hasMobileCards: true,
 
-    mounted() {
-        CommonService.getHistory();
+            isComponentModalActive: false,
+            formProps: {
+                email: 'evan@you.com',
+                password: 'testing'
+            }
+        }
     }
 }
 </script>

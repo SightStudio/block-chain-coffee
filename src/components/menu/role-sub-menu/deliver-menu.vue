@@ -5,10 +5,9 @@
       <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
     </template>
 
-    <b-menu-item icon="account"        label="원두 조회"></b-menu-item>
-    <b-menu-item icon="cellphone-link" label="상품 출고 날짜 등록"></b-menu-item>
-    <b-menu-item icon="cellphone-link" label="상품 도착 날짜 등록"></b-menu-item>
-    <b-menu-item icon="cash-multiple"  label="상품 패키징 날짜 등록"></b-menu-item>
+    <b-menu-item icon="cellphone-link" label="상품 출고 날짜 등록"   tag="router-link" to="/main/deliver/register-goods-release"></b-menu-item>
+    <b-menu-item icon="cellphone-link" label="상품 패키징 날짜 등록" tag="router-link" to="/main/deliver/register-goods-package"></b-menu-item>
+    <b-menu-item icon="cash-multiple"  label="상품 도착 날짜 등록"   tag="router-link" to="/main/deliver/register-goods-arrive"></b-menu-item>
   </b-menu-item>
 </template>
 

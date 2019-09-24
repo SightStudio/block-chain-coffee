@@ -1,96 +1,134 @@
 <template>
 <article class="register-goods">
-  <h3 class="title">로스팅 등록</h3>
+  <h3 class="title">로스팅 단계 등록</h3>
 
   <div class="columns">
-    <form class="column is-9  is-offset-1">
+    <form class="column is-11">
       <div class="level">
-        <div>
+        <div class="column is-5">
           <b-field label="원두 ID">
             <b-input v-model="form.key"></b-input>
           </b-field>
 
-           <!-- <b-field label="원두 도착 날자">
-              <b-datepicker
-                  placeholder="등록할 날자를 정해주세요"
-                  :month-names="calendar.month"
-                  :day-names="calendar.day"
-                  icon="calendar-today">
-              </b-datepicker>
-           </b-field> -->
-          <b-field label="로스팅 온도">
-              <b-slider v-model="form.count" :min="160" :max="240" ticks></b-slider>
-          </b-field>
-
-          <b-field label="로스팅 시간">
-            <b-slider v-model="form.count" :min="15" :max="20" ticks></b-slider>
-          </b-field>
- 
+          <br>
           <label>로스팅 방법</label>
           <b-select placeholder="단계 선택">
                 <option
                     v-for="option in way"
                     :value="option.value"
-                    :key="option.name"
-                    @click="addTag(option.name)">
+                    :key="option.name">
                     {{ option.name }}
                 </option>
             </b-select>
+            
+            <br>
+            <h5 class="title is-6">로스팅 단계 등록</h5>
+
+            <div class="column is-10">
+              <div class="level">
+                  <b-field :label="flavor[0].desc">
+                    <b-numberinput :editable="false" v-model="form.flavor.fragrance" :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                  </b-field>
+                  
+                  <b-field :label="flavor[1].desc">
+                    <b-numberinput :editable="false" v-model="form.flavor.balance"  :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                  </b-field>
+              </div>
+
+              <div class="level">
+                <b-field :label="flavor[2].desc">
+                  <b-numberinput :editable="false" v-model="form.flavor.bitterness" :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                </b-field>
+                
+                <b-field :label="flavor[3].desc">
+                  <b-numberinput :editable="false" v-model="form.flavor.sweetess" :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                </b-field>
+              </div>
+
+              <div class="level">
+                <b-field :label="flavor[4].desc">
+                  <b-numberinput :editable="false" v-model="form.flavor.aftertaste" :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                </b-field>
+                
+                <b-field :label="flavor[5].desc">
+                  <b-numberinput :editable="false" v-model="form.flavor.body" :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                </b-field>
+              </div>
+
+              <div class="level">
+                <b-field :label="flavor[6].desc">
+                  <b-numberinput :editable="false" v-model="form.flavor.acidity" :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                </b-field>
+                
+                <b-field :label="flavor[7].desc">
+                  <b-numberinput :editable="false" v-model="form.flavor.aroma" :min="0" :max="10" ticks size="is-small"  controls-position="compact"></b-numberinput>
+                </b-field>
+              </div>
+            </div>
+        </div> <!-- level-left end -->
+
+        <div class="column is-6">
+          <b-field label="로스팅 온도 (임시 제외)">
+              <b-slider :min="160" :max="240" ticks></b-slider>
+          </b-field>
+
+          <b-field label="로스팅 시간">
+            <b-slider v-model="form.value28" :min="15" :max="20" ticks></b-slider>
+          </b-field>
+          
+          <apexchart type=radar height=350 
+          :options="{
+            labels: [...flavor].map( obj => obj.name),
+            title: {
+                text: 'Flavor 그래프'
+            }
+          }" 
+          :series="[{
+              name: 'flavor',
+              data: [
+                form.flavor.fragrance ,
+                form.flavor.balance   ,
+                form.flavor.bitterness,
+                form.flavor.sweetess  ,
+                form.flavor.aftertaste,
+                form.flavor.body      ,
+                form.flavor.acidity   ,
+                form.flavor.aroma     ,
+              ],
+          }]"/>
         </div>
       </div> <!-- level end -->
       <div class="has-text-right">
         <b-button type="is-info" @click="resetForm">초기화</b-button>
-        <b-button type="is-link">작성</b-button>
+        <b-button type="is-link" @click="registerForm">작성</b-button>
       </div>
     </form>
   </div>
 </article>
 </template>
 <script>
+import { calendar, coffeeMeta } from '../../../util/constant/constant'
+import CafeService              from '../../../api/cafe/cafeService'
 export default {
   data () {
     return {
-      way : [
-        { name : '라이트',   val : '라이트',},
-        { name : '시나몬',   val : '2',},
-        { name : '미디엄',   val : '3',},
-        { name : '하이'  ,   val : '4',},
-        { name : '시티'  ,   val : '4',},
-        { name : '풀시티' ,  val : '4',},
-        { name : '프렌치' ,  val : '4',},
-        { name : '이탈리아', val : '4',},
-      ],
-      bean : [
-        { name : 'AA', val : '1',},
-        { name : 'A', val : '2',},
-        { name : 'AMEX', val : '3',},
-        { name : 'B', val : '4',},
-        { name : 'C', val : '4',},
-      ],
-      from : [
-        { name : '커피인더스트리 1호점', val : '1',},
-        { name : '커피 프린스 1호점', val : '2',},
-        { name : '런던 다방', val : '3',},
-        { name : '카페블리스', val : '4',},
-      ],
-      kind : [
-        { name : '아라비카', val : '1',},
-        { name : '로부스타', val : '2',},
-        { name : '리베리카', val : '3',},
-      ],
-      calendar : {
-        month : ['1월', '2월', '3월', "4월", "5월",'6월', '7월', '8월', "9월", "10월", "11월","12월"] ,
-        day   : ['일', '월', '화', '수', '목', '금', '토']
-      },
+      way        : coffeeMeta.roastingWay,
+      flavor     : coffeeMeta.flavor,
+      calendar   : calendar.kor,
       form : {
-        name   : '',
-        info_1 : '',
-        info_2 : '',
-        info_3 : '',
-        count  : 0,
-        tagArr : [],
-        dest   : '인천 중구 인중로 305 북성동 1가 4-1'
-      }
+        key     : '',
+        value28 : 0,
+        flavor : {
+          fragrance : 0,
+          balance   : 0,
+          bitterness: 0,
+          sweetess  : 0,
+          aftertaste: 0,
+          body      : 0,
+          acidity   : 0,
+          aroma     : 0,
+        }
+      },
     }
   },
   methods: {
@@ -98,9 +136,29 @@ export default {
       for ( let key in this.form ) { this.form[key] = '' }
     },
 
-    addTag(selectBoxName) {
-      this.form.tagArr.push(selectBoxName)
-    }
+    registerForm() {
+      const DTO = {
+        key        : this.form.key, 
+        value28    : this.form.value28,
+        fragrance  : this.form.flavor.fragrance ,
+        balance    : this.form.flavor.balance   ,
+        bitterness : this.form.flavor.bitterness,
+        sweetess   : this.form.flavor.sweetess  ,
+        aftertaste : this.form.flavor.aftertaste,
+        body       : this.form.flavor.body      ,
+        acidity    : this.form.flavor.acidity   ,
+        aroma      : this.form.flavor.aroma     ,
+      }
+
+      let result = CafeService.registerRoastHistory(DTO);
+
+      if(result) {
+        this.$buefy.snackbar.open('정상적으로 등록되었습니다.')
+        this.$router.push('/main/common/show-list')
+      } else {
+       this.$buefy.snackbar.open({ message : '등록에 실패하였습니다.', type : 'is-danger'})
+      }
+    } // end registerForm()
   }
 }
 </script>
@@ -108,4 +166,5 @@ export default {
 <style scoped>
 .button.is-info{background-color: #209cee; margin-right: 20px;}
 .button.is-link{background-color: #3273dc;}
+.field{ margin-bottom: 0 !important; }
 </style>

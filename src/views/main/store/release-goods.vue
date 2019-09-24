@@ -6,7 +6,7 @@
     <form class="column is-9  is-offset-1">
       <div class="level">
         <div>
-          <b-field label="원두 명">
+          <b-field label="원두 ID">
             <b-input v-model="form.key"></b-input>
           </b-field>
 
@@ -15,7 +15,7 @@
                   placeholder="등록할 날자를 정해주세요"
                   :month-names="calendar.month"
                   :day-names="calendar.day"
-                  v-model="form.value11">
+                  v-model="form.value22"
                   icon="calendar-today">
               </b-datepicker>
           </b-field>
@@ -23,10 +23,9 @@
           <b-field label="배송지 주소">
           <b-select placeholder="카페 선택">
                 <option
-                    v-for="option in from"
+                    v-for="option in cafe"
                     :value="option.value"
-                    :key="option.name"
-                    @click="addTag(option.name)">
+                    :key="option.name">
                     {{ option.name }}
                 </option>
             </b-select>
@@ -35,46 +34,24 @@
       </div> <!-- level end -->
       <div class="has-text-right">
         <b-button type="is-info" @click="resetForm">초기화</b-button>
-        <b-button type="is-link">작성</b-button>
+        <b-button type="is-link" @click="registerForm">작성</b-button>
       </div>
     </form>
   </div>
 </article>
 </template>
 <script>
+import { calendar, coffeeMeta } from '../../../util/constant/constant'
+import StoreService             from '../../../api/store/storeService'
 export default {
   data () {
     return {
-      bean : [
-        { name : 'AA', val : '1',},
-        { name : 'A', val : '2',},
-        { name : 'AMEX', val : '3',},
-        { name : 'B', val : '4',},
-        { name : 'C', val : '4',},
-      ],
-      from : [
-        { name : '커피인더스트리 1호점', val : '1',},
-        { name : '커피 프린스 1호점', val : '2',},
-        { name : '런던 다방', val : '3',},
-        { name : '카페블리스', val : '4',},
-      ],
-      kind : [
-        { name : '아라비카', val : '1',},
-        { name : '로부스타', val : '2',},
-        { name : '리베리카', val : '3',},
-      ],
-      calendar : {
-        month : ['1월', '2월', '3월', "4월", "5월",'6월', '7월', '8월', "9월", "10월", "11월","12월"] ,
-        day   : ['일', '월', '화', '수', '목', '금', '토']
-      },
+      calendar : calendar.kor,
+      cafe     : coffeeMeta.cafe,
       form : {
-        name   : '',
-        info_1 : '',
-        info_2 : '',
-        info_3 : '',
-        count  : 0,
-        tagArr : [],
-        dest   : '인천 중구 인중로 305 북성동 1가 4-1'
+        key          : '',
+        value22      : new Date(),
+        destination2 : '',
       }
     }
   },
@@ -83,9 +60,22 @@ export default {
       for ( let key in this.form ) { this.form[key] = '' }
     },
 
-    addTag(selectBoxName) {
-      this.form.tagArr.push(selectBoxName)
-    }
+    registerForm() {
+      const DTO = {
+        key          : this.form.key, 
+        value22      : moment(this.form.value22).format("YYYY/MM/DD").toString(),
+        destination2 : this.form.destination2,
+      }
+
+      let result = StoreService.releaseGoods(DTO);
+
+      if(result) {
+        this.$buefy.snackbar.open('정상적으로 등록되었습니다.')
+        this.$router.push('/main/common/show-list')
+      } else {
+        this.$buefy.snackbar.open({ message : '등록에 실패하였습니다.', type : 'is-danger'})
+      }
+    } // end registerForm()
   }
 }
 </script>
