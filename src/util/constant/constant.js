@@ -60,21 +60,21 @@ export const coffeeMeta = {
     ],
 
     cafe : [
-        { name : '커피인더스트리 1호점', val : '커피인더스트리 1호점'},
-        { name : '커피 프린스 1호점'   , val : '커피 프린스 1호점'},
-        { name : '런던 다방'          , val : '런던 다방'},
-        { name : '카페블리스'         , val : '카페블리스'},
+        { name : '커피인더스트리 1호점', value : '커피인더스트리 1호점'},
+        { name : '커피 프린스 1호점'   , value : '커피 프린스 1호점'},
+        { name : '런던 다방'          , value : '런던 다방'},
+        { name : '카페블리스'         , value : '카페블리스'},
     ],
 
     roastingWay : [
-        { name : '라이트',   val : '라이트'  },
-        { name : '시나몬',   val : '시나몬'  },
-        { name : '미디엄',   val : '미디엄'  },
-        { name : '하이'  ,   val : '하이'    },
-        { name : '시티'  ,   val : '시티'    },
-        { name : '풀시티' ,  val : '풀시티'  }, 
-        { name : '프렌치' ,  val : '프렌치4' },
-        { name : '이탈리아', val : '이탈리아' },
+        { name : '라이트',   value : '라이트'  },
+        { name : '시나몬',   value : '시나몬'  },
+        { name : '미디엄',   value : '미디엄'  },
+        { name : '하이'  ,   value : '하이'    },
+        { name : '시티'  ,   value : '시티'    },
+        { name : '풀시티' ,  value : '풀시티'  }, 
+        { name : '프렌치' ,  value : '프렌치4' },
+        { name : '이탈리아', value : '이탈리아' },
     ],
  
     flavor : [

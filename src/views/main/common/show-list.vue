@@ -105,7 +105,7 @@ export default {
         'qr-code-modal' : QRcodeModal
     },
     async mounted() {
-        this.data = await CommonService.getHistory();
+        //this.data = await CommonService.getHistory();
         await this.meregRow()
     },
     data() {

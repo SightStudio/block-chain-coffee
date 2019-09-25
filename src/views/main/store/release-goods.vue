@@ -21,9 +21,8 @@
           </b-field>
 
           <b-field label="배송지 주소">
-          <b-select placeholder="카페 선택">
+            <b-select placeholder="카페 선택" v-model="form.destination2">
                 <option
-		    v-model="form.destination2"
                     v-for="option in cafe"
                     :value="option.value"
                     :key="option.name">
@@ -65,7 +64,7 @@ export default {
       const DTO = {
         key          : this.form.key, 
         value22      : this.form.value22,
-        destination2 : this.form.destination2,
+        destination2 : this.form.destination2
       }
 
       let result = StoreService.releaseGoods(DTO);
