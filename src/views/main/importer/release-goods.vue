@@ -25,7 +25,7 @@
           </b-field>
 
           <b-field label="배송지 주소">
-            <b-input v-model="form.destination"></b-input>
+            <b-input v-model="form.destination1"></b-input>
           </b-field>
         </div>
       </div> <!-- level end -->

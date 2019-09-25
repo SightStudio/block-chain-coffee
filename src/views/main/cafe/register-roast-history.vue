@@ -138,7 +138,7 @@ export default {
       const DTO = {
         key        : this.form.key, 
         value28    : this.form.value28,
-        value29    : this.form.value29,
+        value29    : 0,
         fragrance  : this.form.flavor.fragrance ,
         balance    : this.form.flavor.balance   ,
         bitterness : this.form.flavor.bitterness,

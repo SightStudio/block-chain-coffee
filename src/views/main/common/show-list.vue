@@ -1,7 +1,13 @@
 <template>
     <section class="show-list">
         <div class="level">
-            <h3 class="title">이력 조회</h3>
+            <h3 class="title">
+                이력 조회
+                <b-button size="is-medium"
+                    icon-right="refresh" @click="refresh">
+                    새로고침
+                </b-button>
+            </h3>
             <span class="has-text-danger has-text-weight-bold is-size-6"> * 패키징 되지 않은 원두는 QR코드가 제공되지 않습니다.</span>
         </div>
 
@@ -88,6 +94,7 @@
     </section>
 </template>
 <script>
+import axios   from 'axios'
 import modal         from './info-modal'
 import QRcodeModal   from './qrcode-modal'
 import CommonService from '../../../api/common/commonService'
@@ -129,7 +136,7 @@ export default {
         },
         openQRCodeinJquery(event ,index) {
 
-            // [1] row에 걸린 이벤트 제거
+             // [1] row에 걸린 이벤트 제거
             event.stopPropagation();
             
             const start = parseInt(this.data.length/4)+1

@@ -5,9 +5,9 @@
       <b-icon class="is-pulled-right" :icon="props.expanded ? 'menu-up' : 'menu-down'">ㄴ</b-icon>
     </template>
     
+    <b-menu-item icon="cellphone-link" label="도착 날짜 등록" tag="router-link" to="/main/cafe/register-deliver-date"></b-menu-item>
     <b-menu-item icon="cellphone-link" label="로스팅 등록"    tag="router-link" to="/main/cafe/register-roast-history"></b-menu-item>
     <b-menu-item icon="cellphone-link" label="상품 출고 등록" tag="router-link" to="/main/cafe/register-goods-release"></b-menu-item>
-    <b-menu-item icon="cellphone-link" label="도착 날짜 등록" tag="router-link" to="/main/cafe/register-deliver-date"></b-menu-item>
   </b-menu-item>
 </template>
 

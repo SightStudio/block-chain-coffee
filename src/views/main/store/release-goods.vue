@@ -25,7 +25,7 @@
           </b-field>
 
           <b-field label="배송지 주소">
-          <b-select placeholder="카페 선택">
+            <b-select placeholder="카페 선택" v-model="form.destination2">
                 <option
                     v-for="option in cafe"
                     :value="option.value"

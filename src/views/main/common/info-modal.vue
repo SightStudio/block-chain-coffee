@@ -117,7 +117,7 @@
                     <br>
 
                     <section>
-                        <b-message title="로스팅 업체 [ 책임자 : 김의진 ]" :closable="false">
+                        <b-message title="창고 관리자 [ 책임자 : 설동민 ]" :closable="false">
                             <table class="table is-bordered is-striped is-hoverable is-fullwidth ">
                                 <tbody>
                                     <tr>
