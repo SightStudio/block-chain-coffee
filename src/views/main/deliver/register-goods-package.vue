@@ -19,6 +19,10 @@
                   icon="calendar-today">
               </b-datepicker>
           </b-field>
+
+          <b-field>
+            <vue-timepicker v-model="form.value42_time"></vue-timepicker>
+          </b-field>
         </div>
       </div> <!-- level end -->
       <div class="has-text-right">
@@ -30,15 +34,21 @@
 </article>
 </template>
 <script>
-import { calendar, coffeeMeta } from '../../../util/constant/constant'
-import DeliverService           from '../../../api/deliver/deliverService'
+import { calendar }    from '../../../util/constant/constant'
+import DeliverService  from '../../../api/deliver/deliverService'
+import moment          from "moment";
+import VueTimepicker   from 'vue2-timepicker/src/vue-timepicker.vue'
 export default {
+  components :{
+    VueTimepicker
+  },
   data () {
     return {
       calendar : calendar.kor,
       form : {
         key    : '',
         value42 : new Date(),
+        value42_time : '00:00',
       }
     }
   },
@@ -47,11 +57,13 @@ export default {
       for ( let key in this.form ) { this.form[key] = '' }
     },
     registerForm() {
+      const _v42_date = moment(this.form.value42).format("YYYY / MM / DD");
+      const _v42time  = this.form.value42_time;
+
       const DTO = {
         key        : this.form.key, 
-        value42    : this.form.value42,
+        value42    : `${_v42_date} - ${_v42time}`,
       }
-
       let result = DeliverService.registerGoodsPackage(DTO);
 
       if(result) {

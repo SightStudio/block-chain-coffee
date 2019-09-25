@@ -10,7 +10,7 @@
               <b-input v-model="form.key"></b-input>
             </b-field>
 
-            <b-field label="날짜 등록">
+            <b-field label="날짜 및 시간 등록">
               <b-datepicker
                 placeholder="등록할 날자를 정해주세요" 
                 :month-names="calendar.month" 
@@ -18,6 +18,10 @@
                 v-model="form.value11"
                 icon="calendar-today">
               </b-datepicker>
+            </b-field>
+
+            <b-field>
+              <vue-timepicker v-model="form.value11_time"></vue-timepicker>
             </b-field>
 
             <label class="has-text-weight-bold">품종 목록</label>
@@ -49,12 +53,16 @@
 
             <b-field label="수확일">
               <b-datepicker 
-                placeholder="등록할 날자를 정해주세요" 
+                placeholder="등록할 날자와 시간를 정해주세요" 
                 v-model="form.value14"
                 :month-names="calendar.month" 
                 :day-names="calendar.day"
                 icon="calendar-today">
               </b-datepicker>
+            </b-field>
+
+            <b-field>
+              <vue-timepicker v-model="form.value14_time"></vue-timepicker>
             </b-field>
 
             <b-field label="수량">
@@ -94,10 +102,14 @@
   </section>
 </template>
 <script>
-import moment from "moment";
 import { calendar, coffeeMeta } from '../../../util/constant/constant'
 import ImporterService          from '../../../api/importer/importerService'
+import moment                   from "moment";
+import VueTimepicker            from 'vue2-timepicker/src/vue-timepicker.vue'
 export default {
+  components :{
+    VueTimepicker
+  },
   data () {
     return {
       calendar : calendar.kor,
@@ -106,14 +118,16 @@ export default {
       kind     : coffeeMeta.kinds,
 
       form : {
-        key      : '',
-        value11  : new Date(),
-        value12  : '',
-        value13  : '',
-        value14  : new Date(),
-        value15  : 0,
-        value16  : '',
-        latitute : 0
+        key           : '',
+        value11      : new Date(),
+        value11_time : '00:00',
+        value12      : '',
+        value13      : '',
+        value14      : new Date(),
+        value14_time : '00:00',
+        value15      : 0,
+        value16      : '',
+        latitute     : 0
       }
     }
   },
@@ -138,12 +152,18 @@ export default {
           break;
       }
 
+      const _v11_date = moment(this.form.value11 ).format("YYYY / MM / DD");
+      const _v11_time = this.form.value11_time;
+      
+      const _v14_date = moment(this.form.value11 ).format("YYYY / MM / DD");
+      const _v14_time = this.form.value14_time;
+
       const DTO = {
         key      : this.form.key, 
-        value11  : this.form.value11,
+        value11  : `${_v11_date} - ${_v11_time}`,
         value12  : this.form.value12,
         value13  : this.form.value13,
-        value14  : this.form.value14,
+        value14  : `${_v14_date} - ${_v14_time}`,
         value15  : this.form.value15,
         value16  : this.form.value16,
         latitute : lat

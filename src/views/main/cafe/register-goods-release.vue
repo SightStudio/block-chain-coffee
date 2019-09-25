@@ -20,6 +20,10 @@
             </b-datepicker>
           </b-field>
           
+          <b-field>
+            <vue-timepicker v-model="form.value38_time"></vue-timepicker>
+          </b-field>
+
           <b-field label="배송지 등록">
               <b-input v-model="form.destination3"></b-input>
             </b-field>
@@ -34,9 +38,14 @@
 </article>
 </template>
 <script>
-import { calendar, coffeeMeta } from '../../../util/constant/constant'
+import { calendar } from '../../../util/constant/constant'
 import CafeService              from '../../../api/cafe/cafeService'
+import moment          from "moment";
+import VueTimepicker   from 'vue2-timepicker/src/vue-timepicker.vue'
 export default {
+  components :{
+    VueTimepicker
+  },
   data () {
     return {
       temp : '블록커피',
@@ -44,6 +53,7 @@ export default {
       form : {
         key          : '',
         value38      : new Date(),
+        value38_time : '00:00',
         destination3 : '인천 중구 인중로 305 북성동 1가 4-1'
       }
     }
@@ -54,9 +64,12 @@ export default {
     },
 
    registerForm() {
+      const _v38_date = moment(this.form.value38).format("YYYY / MM / DD");
+      const _v38time  = this.form.value38_time;
+      
       const DTO = {
         key          : this.form.key, 
-        value38      : this.form.value38,
+        value38  :   `${_v38_date} - ${_v38time}`,
         destination3 : this.destination3
       }
 

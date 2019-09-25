@@ -20,6 +20,10 @@
             </b-datepicker>
           </b-field>
 
+          <b-field>
+            <vue-timepicker v-model="form.value19_time"></vue-timepicker>
+          </b-field>
+
           <b-field label="보관 온도">
               <b-slider v-model="form.value20" :min="10" :max="20" ticks lazy></b-slider>
           </b-field>
@@ -40,15 +44,21 @@
 <script>
 import { calendar }    from '../../../util/constant/constant'
 import StoreService    from '../../../api/store/storeService'
+import moment          from "moment";
+import VueTimepicker   from 'vue2-timepicker/src/vue-timepicker.vue'
 export default {
+  components :{
+    VueTimepicker
+  },
   data () {
     return {
       calendar : calendar.kor,
       form : {
-        key    : '',
-        value19 : new Date(),
-        value20 : 0,
-        value21 : 0,
+        key          : '',
+        value19      : new Date(),
+        value19_time : '00:00',
+        value20      : 0,
+        value21      : 0,
       }
     }
   },
@@ -59,9 +69,12 @@ export default {
     },
 
     registerForm() {
+      const _v19_date = moment(this.form.value19).format("YYYY / MM / DD");
+      const _v19time  = this.form.value19_time;
+
       const DTO = {
         key      : this.form.key, 
-        value19  : this.form.value19,
+        value19  : `${_v19_date} - ${_v19time}`,
         value20  : this.form.value20,
         value21  : this.form.value21,
       }

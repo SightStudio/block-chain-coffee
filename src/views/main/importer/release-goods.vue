@@ -20,6 +20,10 @@
               </b-datepicker>
           </b-field>
 
+          <b-field>
+            <vue-timepicker v-model="form.value17_time"></vue-timepicker>
+          </b-field>
+
           <b-field label="배송지 주소">
             <b-input v-model="form.destination"></b-input>
           </b-field>
@@ -34,16 +38,21 @@
 </article>
 </template>
 <script>
-import { calendar } from '../../../util/constant/constant'
+import { calendar }             from '../../../util/constant/constant'
 import ImporterService          from '../../../api/importer/importerService'
-
+import moment                   from "moment";
+import VueTimepicker            from 'vue2-timepicker/src/vue-timepicker.vue'
 export default {
+  components :{
+    VueTimepicker
+  },
   data () {
     return {
       calendar : calendar.kor,
       form : {
         key          : '',
         value17      : new Date(),
+        value17_time : '00:00',
         destination : '인천 중구 인중로 305 북성동 1가 4-1'
       }
     }
@@ -52,10 +61,15 @@ export default {
     resetForm() {
       for ( let key in this.form ) { this.form[key] = '' }
     },
+
     registerForm() {
+
+      const _v17_date = moment(this.form.value17 ).format("YYYY / MM / DD");
+      const _v17time  = this.form.value17_time;
+
       const DTO = {
         key           : this.form.key, 
-        value17       : this.form.value17,
+        value17       : `${_v17_date} - ${_v17time}`,
         desttination  : this.form.desttination,
       }
 

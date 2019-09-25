@@ -19,8 +19,11 @@
                 icon="calendar-today">
             </b-datepicker>
           </b-field>
-          
-          </div>
+
+          <b-field>
+            <vue-timepicker v-model="form.value24_time"></vue-timepicker>
+          </b-field>
+        </div>
       </div> <!-- level end -->
       <div class="has-text-right">
         <b-button type="is-info" @click="resetForm">초기화</b-button>
@@ -31,15 +34,21 @@
 </article>
 </template>
 <script>
-import { calendar, coffeeMeta } from '../../../util/constant/constant'
+import { calendar } from '../../../util/constant/constant'
 import CafeService              from '../../../api/cafe/cafeService'
+import moment          from "moment";
+import VueTimepicker   from 'vue2-timepicker/src/vue-timepicker.vue'
 export default {
+  components :{
+    VueTimepicker
+  },
   data () {
     return {
       calendar   : calendar.kor,
       form : {
-        key     : '',
-        value24 : new Date(),
+        key          : '',
+        value24      : new Date(),
+        value24_time : '00:00',
       }
     }
   },
@@ -49,9 +58,13 @@ export default {
     },
 
     registerForm() {
+
+      const _v24_date = moment(this.form.value24).format("YYYY / MM / DD");
+      const _v24time  = this.form.value24_time;
+
       const DTO = {
         key      : this.form.key, 
-        value24  : this.form.value24,
+        value24  : `${_v24_date} - ${_v24time}`,
       }
 
       let result = CafeService.registerDeliverDate(DTO);
