@@ -11,7 +11,9 @@
 ![prize](./project_document_asset/image/prize.jpg)
 
 ## 4. 프로젝트
-* 기획서 : [링크](./project_document_asset/doc/represent.pdf "링크 제목")
+* 기획서 : 
+    <embed src="./project_document_asset/doc/represent.pdf " type="application/pdf" />
+    [링크](./project_document_asset/doc/represent.pdf "링크 제목")
 * 사용 기술
   * 프론트 엔드
     * Vue
