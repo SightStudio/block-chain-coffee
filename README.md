@@ -11,8 +11,8 @@
 ![prize](./project_document_asset/image/prize.jpg)
 
 ## 4. 프로젝트
-* 기획서 : 
-    <a href="./project_document_asset/doc/represent.pdf" target="_blank">링크</a>
+* 기획서
+  * [기획서 보러가기](https://drive.google.com/file/d/1FAiZwiPaozy42t_yhOmQMPbO5Fkc2Oh7/view?usp=sharing "링크 제목")
 * 사용 기술
   * 프론트 엔드
     * Vue
@@ -24,4 +24,4 @@
     * React Native 
 
 ## 5. 데모 영상
-[데모 보러가기 ](https://drive.google.com/file/d/1nmjB3mPq1ydm1U1KsBti1UORw7VvvRP4/view?usp=sharing "링크 제목")
+[데모 보러가기](https://drive.google.com/file/d/1nmjB3mPq1ydm1U1KsBti1UORw7VvvRP4/view?usp=sharing "링크 제목")
