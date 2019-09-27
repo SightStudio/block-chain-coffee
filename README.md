@@ -12,8 +12,7 @@
 
 ## 4. 프로젝트
 * 기획서 : 
-    <embed src="./project_document_asset/doc/represent.pdf " type="application/pdf" />
-    [링크](./project_document_asset/doc/represent.pdf "링크 제목")
+    <a href="./project_document_asset/doc/represent.pdf" target="_blank">링크</a>
 * 사용 기술
   * 프론트 엔드
     * Vue
