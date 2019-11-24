@@ -13,7 +13,6 @@ const service = {
     getHistory : () => {
         return axios.get(`/importer-api/query`)
                     .then( res => {
-		               console.log(res)
                        return res.status == 200 ? res.data : [];
                     })
         //return result;

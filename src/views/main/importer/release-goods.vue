@@ -15,7 +15,7 @@
                   placeholder="등록할 날자를 정해주세요"
                   :month-names="calendar.month"
                   :day-names="calendar.day"
-                  v-model="form.value17">
+                  v-model="form.value17"
                   icon="calendar-today">
               </b-datepicker>
           </b-field>
@@ -53,7 +53,7 @@ export default {
         key          : '',
         value17      : new Date(),
         value17_time : '00:00',
-        destination : '인천 중구 인중로 305 북성동 1가 4-1'
+        destination1 : '인천 중구 인중로 305 북성동 1가 4-1'
       }
     }
   },
@@ -70,7 +70,7 @@ export default {
       const DTO = {
         key           : this.form.key, 
         value17       : `${_v17_date} - ${_v17time}`,
-        desttination  : this.form.desttination,
+        destination1  : this.form.destination1,
       }
 
       let result = ImporterService.releaseGood(DTO);

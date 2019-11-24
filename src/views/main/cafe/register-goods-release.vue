@@ -48,20 +48,19 @@ export default {
   },
   data () {
     return {
-      temp : '블록커피',
       calendar : calendar.kor,
       form : {
         key          : '',
         value38      : new Date(),
         value38_time : '00:00',
-        destination3 : '인천 중구 인중로 305 북성동 1가 4-1'
+        destination3 : '블록커피'
       }
     }
   },
   methods: {
     resetForm() {
       for ( let key in this.form ) { this.form[key] = '' }
-    },
+    }, 
 
    registerForm() {
       const _v38_date = moment(this.form.value38).format("YYYY / MM / DD");
@@ -70,7 +69,7 @@ export default {
       const DTO = {
         key          : this.form.key, 
         value38  :   `${_v38_date} - ${_v38time}`,
-        destination3 : this.destination3
+        destination3 : this.form.destination3
       }
 
       let result = CafeService.registerGoodsRelease(DTO);

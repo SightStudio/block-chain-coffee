@@ -22,6 +22,7 @@ export default {
         return {}
     },
     mounted() {
+        console.log(this.rowData)
         QRCode.toCanvas(document.getElementById('QRCode-Canvas'), JSON.stringify(this.rowData), function (error) {
             if (error) console.error(error)
             console.log('success!');

@@ -104,17 +104,18 @@ export default {
         'info-modal'    : modal,
         'qr-code-modal' : QRcodeModal
     },
-    mounted() {
-        // this.data = CommonService.getHistory();
-        this.meregRow()
+    async mounted() {
+        this.data =  await CommonService.getHistory();
+        await this.meregRow();
     },
     data() {
         return {
-            data  : [
-                { "key": "11222", "v11": "2019/09/24", "v12": "아라비카", "v13": "에티오피아", "v14": "2019/09/24", "v15": "1", "v16": "A", "v17": "2", "v18": "dd", "v19": "ddd", "v20": "sdfs", "v21": "sdfs", "v22": "sdsdf", "v23": "2", "v24": "2", "v25": "2", "v26": "2", "v27": "2", "v28": "2", "v29": "2", "v30": "2", "v31": "2", "v32": "2", "v33": "2", "v34": "2", "v35": "2", "v36": "2", "v37": "2", "v38": "2", "v39": "2", "v40": "2" },
-                { "key": "11223", "v11": "2019/09/24", "v12": "아라비카", "v13": "에티오피아", "v14": "2019/09/24", "v15": "1", "v16": "A", "v17": "2", "v18": "df", "v19": "sdf", "v20": "", "v21": "", "v22": "", "v23": "", "v24": "", "v25": "", "v26": "", "v27": "", "v28": "", "v29": "", "v30": "", "v31": "", "v32": "", "v33": "", "v34": "", "v35": "", "v36": "", "v37": "", "v38": "", "v39": "", "v40": "" },
-                { "key": "11228", "v11": "2019/09/24", "v12": "아라비카", "v13": "에티오피아", "v14": "2019/09/24", "v15": "1", "v16": "A", "v17": "2", "v18": "", "v19": "", "v20": "", "v21": "", "v22": "", "v23": "", "v24": "", "v25": "", "v26": "", "v27": "", "v28": "", "v29": "", "v30": "", "v31": "", "v32": "", "v33": "", "v34": "", "v35": "", "v36": "", "v37": "", "v38": "", "v39": "", "v40": "" },
-            ],
+            // data  : [
+            //     { "key": "11222", "v11": "2019/09/24", "v12": "아라비카", "v13": "에티오피아", "v14": "2019/09/24", "v15": "1", "v16": "A", "v17": "2", "v18": "dd", "v19": "ddd", "v20": "sdfs", "v21": "sdfs", "v22": "sdsdf", "v23": "2", "v24": "2", "v25": "2", "v26": "2", "v27": "2", "v28": "2", "v29": "2", "v30": "2", "v31": "2", "v32": "2", "v33": "2", "v34": "2", "v35": "2", "v36": "2", "v37": "2", "v38": "2", "v39": "2", "v40": "2" },
+            //     { "key": "11223", "v11": "2019/09/24", "v12": "아라비카", "v13": "에티오피아", "v14": "2019/09/24", "v15": "1", "v16": "A", "v17": "2", "v18": "df", "v19": "sdf", "v20": "", "v21": "", "v22": "", "v23": "", "v24": "", "v25": "", "v26": "", "v27": "", "v28": "", "v29": "", "v30": "", "v31": "", "v32": "", "v33": "", "v34": "", "v35": "", "v36": "", "v37": "", "v38": "", "v39": "", "v40": "" },
+            //     { "key": "11228", "v11": "2019/09/24", "v12": "아라비카", "v13": "에티오피아", "v14": "2019/09/24", "v15": "1", "v16": "A", "v17": "2", "v18": "", "v19": "", "v20": "", "v21": "", "v22": "", "v23": "", "v24": "", "v25": "", "v26": "", "v27": "", "v28": "", "v29": "", "v30": "", "v31": "", "v32": "", "v33": "", "v34": "", "v35": "", "v36": "", "v37": "", "v38": "", "v39": "", "v40": "" },
+            // ],
+            data:[],
             modalData : {},
             qrcodeData : [],
             dataModalBtn: false,
@@ -139,9 +140,9 @@ export default {
              // [1] row에 걸린 이벤트 제거
             event.stopPropagation();
             
-            const start = parseInt(this.data.length/4)+1
-            const end   = start + 4
-            this.qrcodeData = this.data.slice(start, end)
+            const start = parseInt(this.data.length/4)
+            const end   = start + 3
+            this.qrcodeData = this.data.slice(start-1, end)
 
             // [2] QR 코드 보여주기
             this.qrCodeModalBtn = true;
@@ -150,17 +151,17 @@ export default {
         meregRow() {
             // 엑셀 row 병합 함수 
             $('.qr-code').each(function() {
-                //console.log($(this).data('row-idx-by-4'))
-                //console.log($(this).data('row-idx-by-4'))
                 var rows = $(".qr-code[row-idx='" + $(this).attr('row-idx') + "']");
-//                    console.log(rows)
-                console.log(rows.length)
                 if (rows.length > 1) {
                     rows.eq(0).attr("rowspan", rows.length);
                     rows.not(":eq(0)").remove();
                 }
             })
-        }
+        },
+        async refresh() {
+            this.data = await CommonService.getHistory();
+            await this.meregRow()
+        },
     }
 }
 </script>
